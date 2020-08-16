@@ -1,10 +1,122 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Django API</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h2>This is Index File</h2>
+<!--       <div class="container" >-->
+<!--        <div class="form-container sign-up-container">-->
+
+<!--            <form action="#" class="main-form needs-validation" role="form" novalidate>-->
+<!--                <h3>Create Account</h3>-->
+<!--                <div class="form-group">-->
+<!--                    <label>-->
+<!--                        <input type="text"  class="my_form-control" required>-->
+<!--                        <small class="my_place">Username</small>-->
+<!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
+<!--                    </label>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                    <label>-->
+<!--                        <input type="text"  class="my_form-control" required>-->
+<!--                        <small class="my_place">Your email</small>-->
+<!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
+<!--                    </label>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                    <label>-->
+<!--                        <input type="password"  class="my_form-control" required>-->
+<!--                        <small class="my_place">Your password</small>-->
+<!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
+
+<!--                    </label>-->
+<!--                </div>-->
+
+<!--                <div class="form-group text-center">-->
+<!--                    <button type="submit" class="btn btn-primary mt-2 mx-auto" >CREATE ACCOUNT</button>-->
+<!--                </div>-->
+
+
+
+<!--            </form>-->
+
+
+
+
+<!--        </div>-->
+
+        <div class="form-container sign-in-container">
+
+            <form action="#"  class="main-form needs-validation" role="form" novalidate>
+                <h3>Play with Images</h3>
+
+
+                <div class="form-group">
+
+                    <label>
+<!--                         <small class="my_place">Your password</small>-->
+                        <select class="my_form-control" required>
+                            <option value="">Choose Option</option>
+                            <option value="">Face recognition</option>
+                            <option value="">Celeb Dectection</option>
+                            <option value="">Dta Analysis</option>
+                        </select>
+
+<!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="file" onchange="ChangeImage(event)" class="my_form-control" required>
+<!--                        <small class="my_place">Your password</small>-->
+<!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
+
+                    </label>
+                </div>
+                <br>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary mt-2 mx-auto" >Play</button>
+                </div>
+
+<!--                <div class="form-group mt-2 text-center">-->
+<!--                    <span class="forgot">Forgot password ?</span>-->
+<!--                </div>-->
+
+            </form>
+
+        </div>
+
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    <button class="ghost" >SIGN IN</button>
+
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Django API</h1>
+                    <p>The funcationality will be shown here:</p>
+                    <img id="outImage" src="{% static 'images/svg1.png' %}" alt="">
+<!--                    <button class="ghost" >CREATE ACCOUNT</button>-->
+                </div>
+            </div>
+        </div>
+
+<!--    </div>-->
+       <script>
+           function ChangeImage(e) {
+            var image = document.getElementById("outImage");
+            image.src = URL.createObjectURL(e.target.files[0]);
+           }
+       </script>
+       <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
