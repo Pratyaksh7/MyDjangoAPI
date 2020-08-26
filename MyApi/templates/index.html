@@ -51,19 +51,19 @@
 
         <div class="form-container sign-in-container">
 
-            <form action="#"  class="main-form needs-validation" role="form" novalidate>
+            <form method="post" enctype="multipart/form-data"  class="main-form needs-validation" >
+                {% csrf_token %}
                 <h3>Play with Images</h3>
 
 
                 <div class="form-group">
 
                     <label>
-<!--                         <small class="my_place">Your password</small>-->
-                        <select class="my_form-control" required>
-                            <option value="">Choose a Service</option>
-                            <option value="">Object Detection</option>
-                            <option value="">Face Analysis</option>
-                            <option value="">Celeb Detect.</option>
+                        <select class="my_form-control" name="service" required>
+                            <option>Choose a Service</option>
+                            <option>Object Detection</option>
+                            <option>Face Analysis</option>
+                            <option>Celeb Detect.</option>
                         </select>
 
 <!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
@@ -72,7 +72,7 @@
 
                 <div class="form-group">
                     <label>
-                        <input type="file" onchange="ChangeImage(event)" class="my_form-control" required>
+                        <input type="file" onchange="ChangeImage(event)" class="my_form-control" name="image" required>
 <!--                        <small class="my_place">Your password</small>-->
 <!--                        <div class="invalid-feedback">Please fill out this field.</div>-->
 
