@@ -1,10 +1,19 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.conf import settings
 from .models import MyFile
+
 
 import boto3
 import requests
 import cv2
+
+# django rest api modules
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view, renderer_classes, parser_classes
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import MultiPartParser, FormParser
 
 def ObjectDetection(imagePath):
     session = boto3.Session(profile_name="default")
@@ -51,7 +60,9 @@ def Celebrities_Detection(imagePath):
     cv2.imwrite(imagePath, MyImage)
 
 
-
+@api_view(["GET", "POST"])
+@renderer_classes([JSONRenderer]) # produce result in this format -> {"Url":"http://127.0.0.1:8000/MEDIA/IMG_20190331_145856.jpg"}
+@parser_classes([MultiPartParser,FormParser])
 def index(request):
     if request.method == "POST":
         img = request.FILES['image']
@@ -66,6 +77,13 @@ def index(request):
             Celebrities_Detection(path)
 
         url = "http://127.0.0.1:8000" + data.image.url
-        return redirect(url)
+        Msg = {"Url":url}
+        return Response(data = Msg, status = status.HTTP_200_OK)
 
     return render(request, "index.html")
+
+
+######  WORK with API ######
+
+
+
