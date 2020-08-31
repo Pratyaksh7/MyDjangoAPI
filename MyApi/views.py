@@ -9,11 +9,19 @@ import requests
 import cv2
 
 # django rest api modules
+from rest_framework.serializers import ModelSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, renderer_classes, parser_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import MultiPartParser, FormParser
+
+
+class FileSer(ModelSerializer):
+    class Meta:
+        model = MyFile
+        fields = "__all__"
+
 
 def ObjectDetection(imagePath):
     session = boto3.Session(profile_name="default")
@@ -65,11 +73,11 @@ def Celebrities_Detection(imagePath):
 @parser_classes([MultiPartParser,FormParser])
 def index(request):
     if request.method == "POST":
-        img = request.FILES['image']
         service = request.POST["service"]
-        data = MyFile.objects.create(image = img)   # image is the column name in the table(Model) in database
+
+
+
         path = str(settings.MEDIA_ROOT) + "/" + data.image.name
-        # print(path)
         if service == "Object Detection":
             ObjectDetection(path)
 
