@@ -69,13 +69,13 @@ def Celebrities_Detection(imagePath):
 
 
 @api_view(["GET", "POST"])
-@renderer_classes([JSONRenderer]) # produce result in this format -> {"Url":"http://127.0.0.1:8000/MEDIA/IMG_20190331_145856.jpg"}
-@parser_classes([MultiPartParser,FormParser])
+# @renderer_classes([JSONRenderer]) # produce result in this format -> {"Url":"http://127.0.0.1:8000/MEDIA/IMG_20190331_145856.jpg"}
+# @parser_classes([MultiPartParser,FormParser])
 def index(request):
     if request.method == "POST":
+        img = request.FILES['image']
         service = request.POST["service"]
-
-
+        data = MyFile.objects.create(image=img)  # image is the column name in the table(Model) in database
 
         path = str(settings.MEDIA_ROOT) + "/" + data.image.name
         if service == "Object Detection":

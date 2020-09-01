@@ -51,7 +51,7 @@
 
         <div class="form-container sign-in-container">
 
-            <form id="MyForm"  class="main-form needs-validation" >
+            <form method="post" enctype="multipart/form-data"  class="main-form needs-validation" >
                 {% csrf_token %}
                 <h3>Play with Images</h3>
 
@@ -118,28 +118,6 @@
            }
        </script>
 
-        <script>
-            const myForm = document.getElementById("MyForm");
-            const myFile = document.getElementById("inputImage");
-            const myService = document.getElementById("Service");
-
-            const formData = new FormData();
-
-            myForm.addEventListener("submit",e => {
-                e.preventDefault();
-                formData.append("image",myFile.files[0]);
-                formData.append("service",myService.value);
-
-                var response = fetch("http://127.0.0.1:8000/", {
-                    method: "post",
-                    body: formData
-                });
-
-                alert(response.json());
-
-
-            });
-        </script>
 
        <script src="{% static 'js/index.js' %}"></script>
 </body>
